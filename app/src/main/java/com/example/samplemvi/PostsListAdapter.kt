@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.samplemvi.model.Post
 
-class PostAdapter(private val postsList: List<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
+class PostsListAdapter(private val postsList: MutableList<Post>) : RecyclerView.Adapter<PostsListAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
@@ -22,6 +22,12 @@ class PostAdapter(private val postsList: List<Post>) : RecyclerView.Adapter<Post
 
     override fun getItemCount(): Int {
         return postsList.size
+    }
+
+    fun updatePosts(newPosts: List<Post>) {
+        postsList.clear()
+        postsList.addAll(newPosts)
+        notifyDataSetChanged()
     }
 
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

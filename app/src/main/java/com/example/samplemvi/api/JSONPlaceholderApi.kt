@@ -7,10 +7,10 @@ import retrofit2.http.Path
 interface JSONPlaceholderApi {
 
     @GET("posts")
-    fun  getPosts(): List<Post>
+    suspend fun  getPosts(): List<Post>
 
     @GET("post/{id}")
-    fun getPost(@Path("id") id: Int): Post
+    suspend fun getPost(@Path("id") id: Int): Post
 
     companion object {
         const val BASE_URL = "https://jsonplaceholder.typicode.com/"
